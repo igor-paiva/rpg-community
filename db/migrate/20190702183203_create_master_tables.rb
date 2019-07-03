@@ -2,7 +2,7 @@ class CreateMasterTables < ActiveRecord::Migration[5.1]
   def change
     create_table :master_tables do |t|
       t.references :master, null: false, foreign_key: true, on_delete: :cascade
-      t.references :tabPlale, null: false, foreign_key: true, on_delete: :cascade
+      t.references :table, null: false, foreign_key: true, on_delete: :cascade
 
       t.timestamps
     end

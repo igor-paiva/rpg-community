@@ -8,6 +8,6 @@ class CreateRoles < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :roles, %i[player_id master_id] , unique: true
+    add_index :roles, %i[player_id master_id], unique: true
   end
 end

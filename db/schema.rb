@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190702183203) do
+ActiveRecord::Schema.define(version: 20190703125711) do
 
   create_table "master_tables", force: :cascade do |t|
     t.integer "master_id", null: false
-    t.integer "tabPlale_id", null: false
+    t.integer "table_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["master_id", nil], name: "index_master_tables_on_master_id_and_table_id", unique: true
+    t.index ["master_id", "table_id"], name: "index_master_tables_on_master_id_and_table_id", unique: true
     t.index ["master_id"], name: "index_master_tables_on_master_id"
-    t.index ["tabPlale_id"], name: "index_master_tables_on_tabPlale_id"
+    t.index ["table_id"], name: "index_master_tables_on_table_id"
   end
 
   create_table "masters", force: :cascade do |t|
@@ -76,9 +76,14 @@ ActiveRecord::Schema.define(version: 20190702183203) do
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["instagram"], name: "index_users_on_instagram", unique: true
     t.index ["phone"], name: "index_users_on_phone", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["twitter"], name: "index_users_on_twitter", unique: true
   end
 
