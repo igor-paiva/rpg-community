@@ -14,11 +14,12 @@ ActiveRecord::Schema.define(version: 20190702183203) do
 
   create_table "master_tables", force: :cascade do |t|
     t.integer "master_id", null: false
-    t.integer "table_id", null: false
+    t.integer "tabPlale_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["master_id", nil], name: "index_master_tables_on_master_id_and_table_id", unique: true
     t.index ["master_id"], name: "index_master_tables_on_master_id"
-    t.index ["table_id"], name: "index_master_tables_on_table_id"
+    t.index ["tabPlale_id"], name: "index_master_tables_on_tabPlale_id"
   end
 
   create_table "masters", force: :cascade do |t|
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(version: 20190702183203) do
     t.integer "table_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["player_id", "table_id"], name: "index_player_tables_on_player_id_and_table_id", unique: true
     t.index ["player_id"], name: "index_player_tables_on_player_id"
     t.index ["table_id"], name: "index_player_tables_on_table_id"
   end

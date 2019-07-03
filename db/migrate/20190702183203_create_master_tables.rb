@@ -7,6 +7,6 @@ class CreateMasterTables < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    #add_index :master_tables, %i[master_id table_id], unique: true
+    add_index :master_tables, %i[master_id table_id], unique: true
   end
 end

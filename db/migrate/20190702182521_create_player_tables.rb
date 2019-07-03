@@ -7,6 +7,6 @@ class CreatePlayerTables < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    #add_index :player_tables, %i[player_id table_id], unique: true
+    add_index :player_tables, %i[player_id table_id], unique: true
   end
 end
