@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190703125711) do
+ActiveRecord::Schema.define(version: 20190703193723) do
 
   create_table "master_tables", force: :cascade do |t|
     t.integer "master_id", null: false
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20190703125711) do
     t.integer "max_players", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.text "description"
   end
 
   create_table "users", force: :cascade do |t|
