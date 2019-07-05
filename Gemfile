@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -9,7 +9,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
-gem 'jquery', '~> 4.3'
+gem 'jquery-rails', '~> 4.3'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.1.7'
 gem 'sass-rails', '~> 5.0'
