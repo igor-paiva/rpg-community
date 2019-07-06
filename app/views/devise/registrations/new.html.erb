@@ -1,17 +1,28 @@
 <div class="coluna mt-5">
-  <h3 class="text-dark font-weight-bold mb-4" align="center">Inscreva-se</h3>
+  <h3
+    align="center"
+    class="text-dark font-weight-bold mb-2">
+    Inscreva-se
+  </h3>
+
   <div class="d-flex justify-content-center">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <!-- <%= render "devise/shared/error_messages", resource: resource %> -->
+
+      <%= render "devise/shared/error_messages", resource: resource %>
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text" style="background-color: white">
-                <i class="material-icons text-primary">person_outline</i>
+                <i class="material-icons text-primary">
+                  person_outline
+                </i>
               </div>
             </div>
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "Nome *" %>
+
+            <%= f.text_field :name, autofocus: true, autocomplete: "name",
+                             class: "form-control",placeholder: "Nome *" %>
           </div>
         </div>
 
@@ -19,10 +30,14 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text" style="background-color: white">
-                <i class="material-icons text-primary">person_outline</i>
+                <i class="material-icons text-primary">
+                  person_outline
+                </i>
               </div>
             </div>
-            <%= f.text_field :nick_name, autofocus: true, autocomplete: "nick_name", class: "form-control", placeholder: "Apelido" %>
+
+            <%= f.text_field :nick_name, autofocus: true, autocomplete: "nick_name",
+                             class: "form-control", placeholder: "Apelido" %>
           </div>
         </div>
       </div>
@@ -31,12 +46,17 @@
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text" style="background-color: white">
-              <i class="material-icons text-primary">email</i>
+              <i class="material-icons text-primary">
+                email
+              </i>
             </div>
           </div>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email *" %>
+
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                            class: "form-control", placeholder: "Email *" %>
         </div>
       </div>
+
       <% if @minimum_password_length %>
       <% end %>
 
@@ -45,11 +65,16 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text" style="background-color: white">
-                <i class="material-icons text-primary">lock</i>
+                <i class="material-icons text-primary">
+                  lock
+                </i>
               </div>
             </div>
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Senha *" %>
+
+            <%= f.password_field :password, autocomplete: "new-password",
+                                 class: "form-control", placeholder: "Senha *" %>
           </div>
+
           <small class="form-text text-muted">
             <em>
               (Mínimo <%= @minimum_password_length %> caracteres)
@@ -61,11 +86,16 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text" style="background-color: white">
-                <i class="material-icons text-primary">lock</i>
+                <i class="material-icons text-primary">
+                  lock
+                </i>
               </div>
             </div>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirme *" %>
+
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",
+                                 class: "form-control", placeholder: "Confirme *" %>
           </div>
+
           <small class="form-text text-muted">
             <em>
               (Mínimo <%= @minimum_password_length %> caracteres)
@@ -78,10 +108,14 @@
         <div class="input-group">
           <div class="input-group-prepend">
             <div class="input-group-text" style="background-color: white">
-              <i class="material-icons text-primary">phone</i>
+              <i class="material-icons text-primary">
+                phone
+              </i>
             </div>
           </div>
-          <%= f.text_field :phone, autofocus: true, autocomplete: "phone", class: "form-control", placeholder: "DDI-DD-Telefone" %>
+
+          <%= f.text_field :phone, autofocus: true, autocomplete: "phone",
+                           class: "form-control", placeholder: "DDI-DD-Telefone" %>
         </div>
       </div>
 
@@ -90,10 +124,14 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text" style="background-color: white">
-                <i class="material-icons text-primary">account_box</i>
+                <i class="material-icons text-primary">
+                  account_box
+                </i>
               </div>
             </div>
-            <%= f.text_field :instagram, autofocus: true, autocomplete: "instagram", class: "form-control", placeholder: "Instagram" %>
+
+            <%= f.text_field :instagram, autofocus: true, autocomplete: "instagram",
+                             class: "form-control", placeholder: "Instagram" %>
           </div>
         </div>
 
@@ -101,10 +139,14 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text" style="background-color: white">
-                <i class="material-icons text-primary">account_box</i>
+                <i class="material-icons text-primary">
+                  account_box
+                </i>
               </div>
             </div>
-            <%= f.text_field :twitter, autofocus: true, autocomplete: "twitter", class: "form-control", placeholder: "Twitter" %>
+
+            <%= f.text_field :twitter, autofocus: true, autocomplete: "twitter",
+                             class: "form-control", placeholder: "Twitter" %>
           </div>
         </div>
       </div>
@@ -115,11 +157,12 @@
                         autocomplete: "description",
                         class: "form-control",
                         placeholder: "Descrição",
-                        style: "height: 100px"
-        %>
+                        style: "height: 100px" %>
       </div>
+
       <div class="group" align="center">
         <%= f.submit "REGISTRAR", class: "btn btn-default btn-primary btn-block mb-2 font-weight-bold" %>
+
         <a href="/users/sign_in/">Já possui uma conta!? Faça login agora mesmo</a>
       </div>
     <% end %>
