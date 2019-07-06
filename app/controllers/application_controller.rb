@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
       :sign_up,
-      keys: %i[name nick_name twitter instagram description phone]
+      keys: %i[name email nick_name twitter instagram description phone]
     )
   end
 end
