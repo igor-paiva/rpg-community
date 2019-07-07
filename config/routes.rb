@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :tables
 
   resources :players, only: [:index]
+
+  resources :masters, only: [:index]
 end
