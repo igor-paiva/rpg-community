@@ -1,0 +1,72 @@
+<h2 class="font-weight-light mt-4 mb-5" align="center">
+  Grandes mestres que passaram por aqui...
+</h2>
+
+<div class="card-columns align">
+  <% @masters.each do |master| %>
+    <div class="card shadow-sm mb-4" style="max-width: 16em">
+      <div class="card-body">
+        <h5 class="card-title font-weight-bold" align="center">
+          <%= master.name.capitalize %>
+        </h5>
+
+        <div class="card-text">
+          <% if master.twitter != nil %>
+            <i class="material-icons text-primary position-fixed">
+              person_outline
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Twitter:&nbsp;
+            </span>
+            <%= master.twitter %><br>
+          <% end %>
+
+          <% if master.phone != nil %>
+            <i class="material-icons text-primary position-fixed">
+              phone
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Número:&nbsp;
+            </span>
+            <%= master.phone %><br>
+          <% end %>
+
+          <% if master.instagram != nil %>
+            <i class="material-icons text-primary position-fixed">
+              person_outline
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Instagram:&nbsp;
+            </span>
+            <%= master.instagram %><br>
+          <% end %>
+
+          <span>
+            <i class="material-icons text-primary position-fixed">
+              satellite
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Campanhas:&nbsp;
+            </span>
+
+            <%= master.campaigns.to_i %><br>
+          </span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+.align{
+  margin-right: 20%;
+  margin-left: 20%;
+}
+.space-icon{
+  margin-left: 30px;
+}
+</style>
