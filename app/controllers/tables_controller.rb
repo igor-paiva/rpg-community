@@ -3,10 +3,13 @@ class TablesController < ApplicationController
   before_action :set_admin, only: :user_tables
 
   def index
-    @tables = Table.all
+    @tables = Table.where(available: true)
   end
 
-  def show; end
+  def show
+    @members = [@table.associated_master,
+                @table.associated_players]
+  end
 
   def new
     @table = Table.new

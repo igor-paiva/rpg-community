@@ -25,4 +25,9 @@ class Table < ApplicationRecord
       user_name: user.name
     }
   end
+
+  def count_players
+    counting = PlayerTable.group(:table_id).count
+    counting[id].to_i
+  end
 end
