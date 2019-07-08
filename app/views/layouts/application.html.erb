@@ -109,13 +109,15 @@
                 <span style="margin-left: 30px">Perfil</span>
               </a>
 
-              <a class="dropdown-item" href="#">
+              <%= button_to "/users/sign_out",
+                            method: :delete, class: "btn ml-4 px-0" do %>
+
                 <i class="material-icons position-absolute">
                   exit_to_app
                 </i>
 
                 <span style="margin-left: 30px">Sair</span>
-              </a>
+              <% end %>
             </div>
           </div>
         </div>
