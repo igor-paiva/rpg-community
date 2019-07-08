@@ -12,7 +12,7 @@
           Integrantes
         </h4>
         <div class="d-flex justify-content-center">
-          <div class="card" style="width: 20rem">
+          <div class="card" style="width: 22rem">
 
             <div class="card-header bg-primary text-white">
               <h5><%= @members[0][:table_name].capitalize %></h5>
@@ -23,7 +23,7 @@
               <li class="list-group-item">
                 <div class="row">
 
-                  <label class="col text-left">Mestre </label>
+                  <label class="col text-left border-right">Mestre </label>
                   <% if @members[0][:master] or @members[0][:user_id] %>
                     <label class="col text-left">Campanhas <br> Mestradas </label>
                   <% else %>
@@ -36,12 +36,12 @@
                 <li class="list-group-item">
                   <div class="row">
 
-                    <div class="col">
+                    <div class="col-md-4">
                       <%= @members[0][:user_name].capitalize %>
                     </div>
 
-                    <div class="col-auto">
-                      <button type="button" class="btn btn-default btn-sm"
+                    <div class="col-md-2 border-right">
+                      <button type="button" class="btn btn-link btn-sm"
                               data-toggle="modal" data-target="#Master">
                         <i class="material-icons text-primary">clear</i>
                       </button>
@@ -58,7 +58,7 @@
               <li class="list-group-item">
 
                 <div class="row">
-                  <label class="col text-left mt-3">Jogadores </label>
+                  <label class="col text-left mt-3 border-right">Jogadores </label>
                   <% if @members[1].size != 0 %>
                     <label class="col text-left">Campanhas <br> Jogadas </label>
                     <% else %>
@@ -73,12 +73,12 @@
                   <li class="list-group-item">
                     <div class="row">
 
-                      <div class="col">
+                      <div class="col-md-4">
                         <%= m.name.capitalize %>
                       </div>
 
-                      <div class="col">
-                        <button type="button" class="btn btn-default btn-sm"
+                      <div class="col-md-2 border-right">
+                        <button type="button" class="btn btn-link btn-sm"
                                 data-toggle="modal" data-target="#ModalPlayer<%= m.id.to_s %>">
                           <i class="material-icons text-primary">clear</i>
                         </button>
