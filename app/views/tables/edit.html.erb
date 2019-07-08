@@ -24,7 +24,7 @@
                 <div class="row">
 
                   <label class="col text-left">Mestre </label>
-                  <% if @members[0][:master] %>
+                  <% if @members[0][:master] or @members[0][:user_id] %>
                     <label class="col text-left">Campanhas <br> Mestradas </label>
                   <% else %>
                     <label class="col text-left">Não há um mestre nessa mesa...<br> não ainda...</label>
@@ -32,7 +32,7 @@
                 </div>
               </li>
 
-              <% if @members[0][:master] %>
+              <% if @members[0][:master] or @members[0][:user_id] %>
                 <li class="list-group-item">
                   <div class="row">
 
