@@ -2,17 +2,17 @@
   Bravos aventureiros que passaram por aqui...
 </h2>
 
-<div class="card-columns align">
+<div class="card-columns mx-3" align="center">
   <% @players.each do |player| %>
-    <div class="card shadow-sm mb-4" style="max-width: 16em">
-      <div class="card-body">
+    <div class="card shadow-sm mb-4" style="max-width: 18em">
+      <div class="card-body" align="left">
         <h5 class="card-title font-weight-bold" align="center">
           <%= player.name.capitalize %>
         </h5>
 
         <div class="card-text">
           <% if player.twitter != nil %>
-            <i class="material-icons text-primary position-fixed">
+            <i class="material-icons text-primary position-absolute">
               person_outline
             </i>
 
@@ -23,7 +23,7 @@
           <% end %>
 
           <% if player.phone != nil %>
-            <i class="material-icons text-primary position-fixed">
+            <i class="material-icons text-primary position-absolute">
               phone
             </i>
 
@@ -34,7 +34,7 @@
           <% end %>
 
           <% if player.instagram != nil %>
-            <i class="material-icons text-primary position-fixed">
+            <i class="material-icons text-primary position-absolute">
               person_outline
             </i>
 
@@ -45,7 +45,7 @@
           <% end %>
 
           <span>
-            <i class="material-icons text-primary position-fixed">
+            <i class="material-icons text-primary position-absolute">
               satellite
             </i>
 
@@ -55,6 +55,20 @@
 
             <%= player.campaigns.to_i %><br>
           </span>
+
+          <% if player.description != nil %>
+            <i class="material-icons text-primary position-absolute">
+              menu
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Descrição:<br>
+            </span>
+
+            <p class="text-justify">
+              <%= player.description %><br>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -62,10 +76,6 @@
 </div>
 
 <style>
-.align{
-  margin-right: 20%;
-  margin-left: 20%;
-}
 .space-icon{
   margin-left: 30px;
 }
