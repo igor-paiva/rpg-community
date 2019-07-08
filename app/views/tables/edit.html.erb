@@ -13,7 +13,6 @@
         </h4>
         <div class="d-flex justify-content-center">
           <div class="card" style="width: 22rem">
-
             <div class="card-header bg-primary text-white">
               <h5><%= @members[0][:table_name].capitalize %></h5>
             </div>
@@ -22,7 +21,6 @@
 
               <li class="list-group-item">
                 <div class="row">
-
                   <label class="col text-left border-right">Mestre </label>
                   <% if @members[0][:master] or @members[0][:user_id] %>
                     <label class="col text-left">Campanhas <br> Mestradas </label>
@@ -35,7 +33,6 @@
               <% if @members[0][:master] or @members[0][:user_id] %>
                 <li class="list-group-item">
                   <div class="row">
-
                     <div class="col-md-4">
                       <%= @members[0][:user_name].capitalize %>
                     </div>
@@ -50,13 +47,11 @@
                     <div class="col text-right">
                       <%= @members[0][:campaigns].to_i %>
                     </div>
-
                   </div>
                 </li>
               <% end %>
 
               <li class="list-group-item">
-
                 <div class="row">
                   <label class="col text-left mt-3 border-right">Jogadores </label>
                   <% if @members[1].size != 0 %>
@@ -66,13 +61,11 @@
                       aventureiro se ajuntou a esta aventura </label>
                   <% end %>
                 </div>
-
               </li>
               <% if @members[1] %>
                 <% @members[1].each do |m| %>
                   <li class="list-group-item">
                     <div class="row">
-
                       <div class="col-md-4">
                         <%= m.name.capitalize %>
                       </div>
@@ -87,12 +80,10 @@
                       <div class="col text-right">
                         <%= m.campaigns.to_i %>
                       </div>
-
                     </div>
                 <% end %>
                 </li>
               <% end %>
-
             </ul>
 
             <div class="modal fade" id="Master" tabindex="-1" role="dialog"
@@ -100,7 +91,6 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-
                     <h5 class="modal-title" id="MasterLabelTitle">Você tem certeza?!</h5>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -108,17 +98,14 @@
                     </button>
 
                   </div>
-
                   <div class="modal-body">
                     Deseja remover esse mestre da sua mesa?
                   </div>
 
                   <div class="modal-footer">
-
                     <button type="button" class="btn btn-dark btn-to-left" data-dismiss="modal">FECHAR</button>
 
                     <button type="button" class="btn btn-primary">REMOVER</button>
-
                   </div>
                 </div>
               </div>
@@ -131,7 +118,6 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
-
                       <h5 class="modal-title"
                           id="exampleModalLabel">
                         Você tem certeza?!
@@ -140,7 +126,6 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
-
                     </div>
 
                     <div class="modal-body">
@@ -148,18 +133,14 @@
                     </div>
 
                     <div class="modal-footer">
-
                       <button type="button" class="btn btn-dark btn-to-left" data-dismiss="modal">FECHAR</button>
 
                       <button type="button" class="btn btn-primary">Save changes</button>
-
                     </div>
-
                   </div>
                 </div>
               </div>
             <% end %>
-
           </div>
         </div>
       </div>

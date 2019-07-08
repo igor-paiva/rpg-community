@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   resources :masters, only: [:index]
 
   resources :tables do
-    get '/users/:admin_id/', action: :user_tables,
-                             controller: 'tables', on: :collection
+    get '/users/:admin_id/',
+        action: :user_tables,
+        controller: 'tables',
+        on: :collection
   end
-
 end

@@ -14,7 +14,6 @@
         </div>
       </div>
     <% else %>
-
       <h2 class="font-weight-light mt-4" align="center">Suas Mesas</h2>
 
       <div class="row mt-1 ml-2 justify-content-start">
@@ -30,12 +29,9 @@
       <div class="card-columns mt-4" align="center">
 
         <% @tables.each do |table| %>
-
           <div class="card ml-2 mr-2 mt-3 mb-2 shadow-sm" style="max-width: 20em;">
-
             <div class="card-header" style="background-color: #9c1101;">
               <div class="row">
-
                 <div class="col-sm-6 text-left">
                   <h5 class="text-white font-weight-bold">
                     <%= table.name.capitalize %>
@@ -63,14 +59,12 @@
                     <i class="material-icons text-white">delete</i>
                   </button>
                 </div>
-
               </div>
             </div>
 
             <div class="card-body">
               <p class="card-text text-justify"><%= table.description %></p>
             </div>
-
           </div>
 
         <% end %>
@@ -80,7 +74,6 @@
                aria-labelledby="editModalLabel<%= table.id.to_s %>" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
-
                 <div class="modal-header">
                   <h5 class="modal-title" id="editModalLabel<%= table.id.to_s %>">Edite sua mesa</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -109,6 +102,7 @@
                       <%= f.number_field :max_players, autofocus: true,
                                          class: "form-control" %>
                     </div>
+
                     <div class="container mt-2 mb-3">
                       <div class="row">
                         <div class="text-left">Disponível:</div>
@@ -133,7 +127,6 @@
                                       placeholder: "Descrição",
                                       style: "height: 100px" %>
                     </div>
-
                   </div>
 
                   <div class="modal-footer">
@@ -143,7 +136,6 @@
                     </button>
                     <%= f.submit 'SALVAR', class: "btn btn-primary" %>
                   </div>
-
                 <% end %>
               </div>
             </div>
@@ -155,7 +147,6 @@
                aria-labelledby="deleteDialogLabel<%= table.id.to_s %>" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
-
                 <div class="modal-header">
                   <h5 class="modal-title" id="deleteDialog<%= table.id.to_s %>LongTitle">
                     Você tem certeza?!
@@ -179,12 +170,10 @@
                                 params: { :admin_id => table.admin_id.to_s },
                                 method: :delete, class: "btn btn-primary" %>
                 </div>
-
               </div>
             </div>
           </div>
         <% end %>
-
     <% end %>
     </div>
   </div>

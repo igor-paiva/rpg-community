@@ -24,6 +24,5 @@ class Table < ApplicationRecord
       campaigns: master.campaigns,
       user_name: user.name
     }
-
   end
 end

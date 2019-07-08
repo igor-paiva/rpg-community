@@ -30,7 +30,6 @@ class TablesController < ApplicationController
     @admin_id = params[:admin_id]
     @members = [@table.associated_master,
                 @table.associated_players]
-
   end
 
   def update
