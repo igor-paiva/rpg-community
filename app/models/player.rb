@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
-  has_one :role
+  has_one :role, dependent: :nullify
   has_many :player_tables
 
   scope :availables, ->() {
