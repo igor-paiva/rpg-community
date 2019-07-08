@@ -13,6 +13,115 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a
+          href="/"
+          style="font-size: 1.5rem"
+          class="navbar-brand font-weight-bold text-white">
+          RPG
+        </a>
+
+        <button
+          type="button"
+          class="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          id="navbarSupportedContent"
+          style="font-size: 1.25rem"
+          class="collapse navbar-collapse">
+
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a
+                role="button"
+                id="navbarDropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-toggle="dropdown"
+                class="nav-link dropdown-toggle font-weight-bold text-white">
+                Mesas
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="tables/users/<%= current_user.id %>">
+                  Minhas mesas
+                </a>
+
+                <a class="dropdown-item" href="/tables">
+                  Mesas disponíveis
+                </a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                role="button"
+                id="navbarDropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-toggle="dropdown"
+                class="nav-link dropdown-toggle font-weight-bold text-white">
+                Usuários
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/masters">
+                  Mestres
+                </a>
+
+                <a class="dropdown-item" href="/players">
+                  Jogadores
+                </a>
+              </div>
+            </li>
+          </ul>
+
+          <div class="nav-item dropdown">
+            <a
+              role="button"
+              id="navbarDropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              data-toggle="dropdown"
+              class="nav-link dropdown-toggle font-weight-bold text-white">
+              <%= current_user.name.capitalize %>
+            </a>
+
+            <div
+              class="dropdown-menu"
+              style="margin-left: -3em"
+              aria-labelledby="navbarDropdown">
+
+              <a class="dropdown-item" href="/users/profile">
+                <i class="material-icons position-absolute">
+                  person_outline
+                </i>
+
+                <span style="margin-left: 30px">Perfil</span>
+              </a>
+
+              <a class="dropdown-item" href="#">
+                <i class="material-icons position-absolute">
+                  exit_to_app
+                </i>
+
+                <span style="margin-left: 30px">Sair</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
