@@ -18,7 +18,7 @@ class Table < ApplicationRecord
   def associated_master
     return { table_name: name } unless master
 
-    user = User.find(master.role.user_id)
+    user = User.find(master.user_id)
 
     {
       user_id: user.id,
