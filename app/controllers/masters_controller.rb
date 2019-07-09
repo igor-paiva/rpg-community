@@ -9,7 +9,12 @@ class MastersController < ApplicationController
 
   def update
     @master = Master.find(params[:id])
-    @master.update_attributes params.require(:master)
-                                    .permit(:available, :campaigns)
+                    .update_attributes master_params
   end
+end
+
+private
+
+def master_params
+  params.require(:master).permit(:available, :campaigns)
 end

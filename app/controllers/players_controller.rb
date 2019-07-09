@@ -9,7 +9,12 @@ class PlayersController < ApplicationController
 
   def update
     @player = Player.find(params[:id])
-    @player.update_attributes params.require(:player)
-                                    .permit(:available, :campaigns)
+                    .update_attributes player_params
   end
+end
+
+private
+
+def player_params
+  params.require(:player).permit(:available, :campaigns)
 end
