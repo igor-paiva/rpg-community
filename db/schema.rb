@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190703193723) do
+ActiveRecord::Schema.define(version: 20190708150558) do
 
   create_table "master_tables", force: :cascade do |t|
     t.integer "master_id", null: false
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20190703193723) do
     t.index ["player_id", "master_id"], name: "index_roles_on_player_id_and_master_id", unique: true
     t.index ["player_id"], name: "index_roles_on_player_id"
     t.index ["user_id"], name: "index_roles_on_user_id"
+  end
+
+  create_table "solicitations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "table_id", null: false
+    t.string "role", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["table_id"], name: "index_solicitations_on_table_id"
+    t.index ["user_id", "table_id"], name: "index_solicitations_on_user_id_and_table_id", unique: true
+    t.index ["user_id"], name: "index_solicitations_on_user_id"
   end
 
   create_table "tables", force: :cascade do |t|
