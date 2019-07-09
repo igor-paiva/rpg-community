@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190708150558) do
+ActiveRecord::Schema.define(version: 20190709061404) do
 
   create_table "master_tables", force: :cascade do |t|
     t.integer "master_id", null: false
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20190708150558) do
     t.boolean "available", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_masters_on_user_id", unique: true
   end
 
   create_table "player_tables", force: :cascade do |t|
@@ -44,18 +46,8 @@ ActiveRecord::Schema.define(version: 20190708150558) do
     t.boolean "available", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "player_id"
-    t.integer "master_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["master_id"], name: "index_roles_on_master_id"
-    t.index ["player_id", "master_id"], name: "index_roles_on_player_id_and_master_id", unique: true
-    t.index ["player_id"], name: "index_roles_on_player_id"
-    t.index ["user_id"], name: "index_roles_on_user_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_players_on_user_id", unique: true
   end
 
   create_table "solicitations", force: :cascade do |t|

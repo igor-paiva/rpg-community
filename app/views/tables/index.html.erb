@@ -9,6 +9,9 @@
               <h5 class="text-white font-weight-bold">
                 <%= table.name.capitalize %>
               </h5>
+              <h6 class="text-left" style="color: ghostwhite;">
+                <%= table.admin.name %>
+              </h6>
             </div>
 
             <% if table.user_associated?(current_user) %>
@@ -33,14 +36,6 @@
         </div>
 
         <div class="card-body">
-
-          <div class="card-title">
-
-            <h5 class="text-left">
-              <%= table.admin.name %>
-            </h5>
-
-          </div>
           <div class="card-text">
 
             <h6 class="text-left">
