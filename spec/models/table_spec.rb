@@ -44,4 +44,38 @@ RSpec.describe Table, :type => :model do
       end
     end
   end
+
+  describe '#associated_master' do
+    let!(:table) { create(:table) }
+
+    subject { table.associated_master }
+
+    context 'when there is no master associated' do
+      it 'return the table name' do
+        is_expected.to eq({ table_name: table.name })
+      end
+    end
+
+    context 'when there is a master associated' do
+      let(:master) { create(:master) }
+
+      let!(:master_table) do
+        create(:master_table, table: table, master: master)
+      end
+
+      let!(:table_data) do
+        {
+          user_id: master.user.id,
+          table_name: table.name,
+          table_master_id: master_table.id,
+          campaigns: master.campaigns,
+          user_name: master.user.name
+        }
+      end
+
+      it 'return table data' do
+        is_expected.to eq table_data
+      end
+    end
+  end
 end
