@@ -48,6 +48,12 @@ RSpec.describe Table, :type => :model do
   describe '#associated_master' do
     let!(:table) { create(:table) }
 
+    let(:other_table) { create(:table) }
+
+    let!(:other_master_table) do
+      create(:master_table, table: other_table)
+    end
+
     subject { table.associated_master }
 
     context 'when there is no master associated' do
@@ -75,6 +81,34 @@ RSpec.describe Table, :type => :model do
 
       it 'return table data' do
         is_expected.to eq table_data
+      end
+    end
+  end
+
+  describe '#count_players' do
+    let!(:table) { create(:table) }
+
+    let(:other_table) { create(:table) }
+
+    let!(:other_player_tables) do
+      create_list(:player_table, 3, table: other_table)
+    end
+
+    subject { table.count_players }
+
+    context 'when there is no players associated' do
+      it 'return 0' do
+        is_expected.to eq 0
+      end
+    end
+
+    context 'where there is many players associated' do
+      let!(:player_tables) do
+        create_list(:player_table, 5, table: table)
+      end
+
+      it 'return the quantity of players' do
+        is_expected.to eq player_tables.length
       end
     end
   end
