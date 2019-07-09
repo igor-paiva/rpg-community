@@ -14,8 +14,7 @@ class SolicitationsController < ApplicationController
   end
 
   def conclude
-    s = Solicitation.find(params[:id])
-    s.conclude
+    Solicitation.find(params[:id]).conclude
 
     redirect_to '/tables/users/' + params[:admin_id]
   end
