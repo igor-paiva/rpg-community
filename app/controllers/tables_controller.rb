@@ -1,5 +1,5 @@
 class TablesController < ApplicationController
-  before_action :set_table, only: %i[show update edit destroy]
+  before_action :set_table, only: %i[show update edit destroy table_solicitations]
   before_action :set_admin, only: :user_tables
 
   def index
@@ -44,6 +44,14 @@ class TablesController < ApplicationController
 
   def user_tables
     @tables = @admin.tables
+  end
+
+  def table_solicitations
+    @users = User.joins(:solicitations)
+                 .where(solicitations: { table_id: @table.id })
+                 .select('users.name')
+                 .select('solicitations.*')
+                 .order(created_at: :asc)
   end
 end
 
