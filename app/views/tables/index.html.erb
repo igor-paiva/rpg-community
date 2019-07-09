@@ -74,7 +74,7 @@
               <button type="button" class="btn btn-dark btn-to-left"
                       data-dismiss="modal">FECHAR
               </button>
-              <% if table.count_players < table.max_players && current_user.player %>
+              <% if table.count_players < table.max_players && current_user.player.available %>
                 <%= button_to 'COMO JOGADOR', "/solicitations",
                             params: { :table_id => table.id,
                                       :user_id => current_user.id,
@@ -82,7 +82,7 @@
                             method: :post,
                             class: "btn btn-primary" %>
                 <%end %>
-              <% unless table.master && !current_user.master %>
+              <% unless table.master && !current_user.master.available %>
               <%= button_to 'COMO MESTRE', "/solicitations",
                             params: { :table_id => table.id,
                                       :user_id => current_user.id ,
