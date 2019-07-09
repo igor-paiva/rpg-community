@@ -25,4 +25,6 @@ Rails.application.routes.draw do
         to: 'tables#table_solicitations',
         on: :collection
   end
+
+  get '/', to: 'tables#index'
 end

@@ -42,11 +42,11 @@ class Table < ApplicationRecord
     return true if solicitations.find_by(user_id: user.id)
 
     player = user.player
+
     if player_tables && player
       return true if player_tables
                      .find_by(player_id: player.id)
     end
     false
   end
-
 end
