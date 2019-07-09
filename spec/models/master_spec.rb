@@ -2,17 +2,13 @@ require "rails_helper"
 
 RSpec.describe Master, :type => :model do
   describe '.availables' do
-    let!(:no_master_user) { create(:user) }
-    let!(:no_user_master) { create(:master) }
+    let!(:not_available_master_user) { create(:user) }
 
-    let(:not_available_master_user) { create(:user) }
-    let(:not_available_master) { create(:master, available: false) }
-
-    let!(:not_available_role) do
+    let!(:not_available_master) do
       create(
-        :role,
+        :master,
         user: not_available_master_user,
-        master: not_available_master
+        available: false
       )
     end
 
@@ -27,8 +23,10 @@ RSpec.describe Master, :type => :model do
     context 'when there is only one master' do
       context 'and it is not available' do
         let(:user) { create(:user) }
-        let(:master) { create(:master, available: false) }
-        let!(:role) { create(:role, user: user, master: master) }
+
+        let!(:master) do
+          create(:master, user: user, available: false)
+        end
 
         it 'return nothing' do
           is_expected.to be_empty
@@ -37,8 +35,7 @@ RSpec.describe Master, :type => :model do
 
       context 'and it is available' do
         let(:user) { create(:user) }
-        let(:master) { create(:master) }
-        let!(:role) { create(:role, user: user, master: master) }
+        let!(:master) { create(:master, user: user) }
 
         it 'return the master user' do
           is_expected.to match_array [user]
@@ -48,18 +45,15 @@ RSpec.describe Master, :type => :model do
 
     context 'when there is many masters' do
       let(:user) { create(:user) }
-      let(:master) { create(:master) }
-      let!(:role) { create(:role, user: user, master: master) }
+      let!(:master) { create(:master, user: user) }
 
       let(:other_user) { create(:user) }
-      let(:other_master) { create(:master) }
-      let!(:other_role) { create(:role, user: other_user, master: other_master) }
+      let!(:other_master) { create(:master, user: other_user) }
 
       let(:different_user) { create(:user) }
-      let(:different_master) { create(:master) }
 
-      let!(:different_role) do
-        create(:role, user: different_user, master: different_master)
+      let!(:different_master) do
+        create(:master, user: different_user)
       end
 
       it 'return masters users' do
