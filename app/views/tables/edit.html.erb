@@ -85,7 +85,7 @@
 
                       <div class="col-md-2 border-right">
                         <button type="button" class="btn btn-link btn-sm"
-                                data-toggle="modal" data-target="#ModalPlayer<%= m.id.to_s %>">
+                                data-toggle="modal" data-target="#ModalPlayer<%= m[:player_table_id].to_s %>">
                           <i class="material-icons text-primary">clear</i>
                         </button>
                       </div>
@@ -129,7 +129,7 @@
             </div>
 
             <% @members[1].each do |m| %>
-              <div class="modal fade " id="ModalPlayer<%= m.id.to_s %>"
+              <div class="modal fade " id="ModalPlayer<%= m[:player_table_id].to_s %>"
                    tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                    aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -152,7 +152,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-dark btn-to-left" data-dismiss="modal">FECHAR</button>
 
-                      <%= button_to 'REMOVER', "/player_tables/" + m.id.to_s,
+                      <%= button_to 'REMOVER', "/player_tables/" + m[:player_table_id].to_s,
                                     params: {:admin_id => @table.admin.id},
                                     method: :delete,
                                     class: "btn btn-primary" %>

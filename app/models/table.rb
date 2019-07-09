@@ -10,9 +10,9 @@ class Table < ApplicationRecord
   def associated_players
     User.joins(player: :player_tables)
         .where(player_tables: { table_id: id })
-        .select('users.name')
-        .select('player_tables.id')
+        .select('users.*')
         .select('players.campaigns')
+        .select('player_tables.id AS player_table_id')
   end
 
   def associated_master
@@ -42,11 +42,11 @@ class Table < ApplicationRecord
     return true if solicitations.find_by(user_id: user.id)
 
     player = user.player
+
     if player_tables && player
       return true if player_tables
                      .find_by(player_id: player.id)
     end
     false
   end
-
 end

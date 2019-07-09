@@ -22,6 +22,9 @@ if Rails.env.development?
   user1 = joao || User.create!(
     name: 'João',
     email: 'joao@mail.com',
+    phone: '999182031',
+    twitter: '@joaozera',
+    instagram: '@joaozera',
     password: 'joao12',
     password_confirmation: 'joao12'
   )
@@ -30,6 +33,7 @@ if Rails.env.development?
     name: 'José',
     email: 'jose@mail.com',
     password: 'jose12',
+    phone: '192730112',
     password_confirmation: 'jose12',
     description: Faker::Lorem.paragraph_by_chars
   )
@@ -38,6 +42,9 @@ if Rails.env.development?
     name: 'Jorge',
     email: 'jorge@mail.com',
     password: 'jorge12',
+    phone: '182399230',
+    twitter: '@jorgin',
+    instagram: '@jorgin',
     password_confirmation: 'jorge12',
     description: Faker::Lorem.paragraph_by_chars
   )
@@ -45,6 +52,9 @@ if Rails.env.development?
   user4 = john || User.create!(
     name: 'John',
     email: 'john@mail.com',
+    phone: '9754901203',
+    twitter: '@johners',
+    instagram: '@johners',
     password: 'john12',
     password_confirmation: 'john12'
   )
@@ -192,11 +202,11 @@ if Rails.env.development?
 
   table1_master_table = MasterTable.find_by(
     master_id: master3.id,
-    table_id: table1.id
+    table_id: table2.id
   )
 
   master_table = table1_master_table || MasterTable.create!(
     master_id: master3.id,
-    table_id: table1.id
+    table_id: table2.id
   )
 end

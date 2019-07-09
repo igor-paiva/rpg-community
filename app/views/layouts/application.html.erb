@@ -101,13 +101,30 @@
               style="margin-left: -3em"
               aria-labelledby="navbarDropdown">
 
-              <a class="dropdown-item" href="/users/profile">
+              <a class="dropdown-item" href="/users/edit">
                 <i class="material-icons position-absolute">
                   person_outline
                 </i>
 
                 <span style="margin-left: 30px">Perfil</span>
               </a>
+
+              <%= button_to '/masters/enable/' + current_user.id.to_s,
+                            method: :get, class: "btn ml-4 px-0" do %>
+                <i class="material-icons position-absolute">
+                  library_books
+                </i>
+
+                <span style="margin-left: 30px">Mestre</span>
+                <%end %>
+              <%= button_to'/players/enable/' + current_user.id.to_s,
+                            method: :get, class: "btn ml-4 px-0" do%>
+                <i class="material-icons position-absolute">
+                  explore
+                </i>
+
+                <span style="margin-left: 30px">Jogador</span>
+              <%end %>
 
               <%= button_to "/users/sign_out",
                             method: :delete, class: "btn ml-4 px-0" do %>

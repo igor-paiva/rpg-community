@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :players, only: [:index]
+  resources :players, only: %i[index update] do
+    get '/enable/:admin_id', to: 'players#enable',
+        on: :collection
+  end
 
-  resources :masters, only: [:index]
+  resources :masters, only: %i[index update] do
+    get '/enable/:admin_id', to: 'masters#enable',
+        on: :collection
+  end
 
   resources :player_tables, only: [:destroy]
 
@@ -19,4 +25,6 @@ Rails.application.routes.draw do
         to: 'tables#table_solicitations',
         on: :collection
   end
+
+  get '/', to: 'tables#index'
 end
