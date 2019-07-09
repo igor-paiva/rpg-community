@@ -202,11 +202,11 @@ if Rails.env.development?
 
   table1_master_table = MasterTable.find_by(
     master_id: master3.id,
-    table_id: table1.id
+    table_id: table2.id
   )
 
   master_table = table1_master_table || MasterTable.create!(
     master_id: master3.id,
-    table_id: table1.id
+    table_id: table2.id
   )
 end
