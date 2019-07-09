@@ -1,5 +1,5 @@
 class Master < ApplicationRecord
-  has_one :role, dependent: :nullify
+  belongs_to :user
   has_many :master_tables
 
   scope :availables, ->() {

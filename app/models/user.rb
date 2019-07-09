@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  has_one :role, dependent: :destroy
-  has_one :player, through: :role
-  has_one :master, through: :role
+  has_one :player, dependent: :destroy
+  has_one :master, dependent: :destroy
   has_many :tables, foreign_key: :admin_id, dependent: :destroy
   has_many :solicitations, dependent: :destroy
 
