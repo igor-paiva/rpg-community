@@ -1,18 +1,21 @@
 class TablesController < ApplicationController
-  before_action :set_table, only: %i[show update edit destroy table_solicitations]
   before_action :set_admin, only: :user_tables
+  before_action :set_table, only: %i[show update edit destroy table_solicitations]
 
   def index
     @tables = Table.where(available: true)
   end
 
   def show
-    @members = [@table.associated_master,
-                @table.associated_players]
+    @members = [
+      @table.associated_master,
+      @table.associated_players
+    ]
   end
 
   def new
     @table = Table.new
+
     @admin_id = params[:admin_id]
   end
 
@@ -31,6 +34,7 @@ class TablesController < ApplicationController
 
   def edit
     @admin_id = params[:admin_id]
+
     @members = [@table.associated_master,
                 @table.associated_players]
   end
@@ -47,25 +51,21 @@ class TablesController < ApplicationController
   end
 
   def table_solicitations
-    @users = User.joins(:solicitations)
-                 .where(solicitations: { table_id: @table.id })
-                 .select('users.name')
-                 .select('solicitations.*')
-                 .order(created_at: :asc)
+    @solicitations = Solicitation.for_table_detailed(@table.id)
   end
-end
 
 private
 
-def set_table
-  @table = Table.find(params[:id])
-end
+  def set_table
+    @table = Table.find(params[:id])
+  end
 
-def set_admin
-  @admin = User.find(params[:admin_id])
-end
+  def set_admin
+    @admin = User.find(params[:admin_id])
+  end
 
-def table_params
-  params.require(:table).permit(:admin_id, :name, :available,
-                                :max_players, :description)
+  def table_params
+    params.require(:table).permit(:admin_id, :name, :available,
+                                  :max_players, :description)
+  end
 end

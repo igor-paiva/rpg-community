@@ -47,6 +47,7 @@ class Table < ApplicationRecord
       return true if player_tables
                      .find_by(player_id: player.id)
     end
+
     false
   end
 end
