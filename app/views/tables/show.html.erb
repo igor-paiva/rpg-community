@@ -1,0 +1,92 @@
+<div class="container pt-2">
+  <div class="row pt-1 align-self-center">
+    <div class="col pt-3">
+
+      <h2
+        align="center"
+        class="text-dark font-weight-bold mb-3">
+        Integrantes
+      </h2>
+
+      <div class="d-flex justify-content-center">
+        <div class="card" style="width: 22rem">
+          <div class="card-header bg-primary text-white">
+            <h5>
+              <%= @table.name.capitalize %>
+            </h5>
+            Máximo de jogadores:
+            <%= @table.max_players.to_s %>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="row">
+                <label class="col text-left border-right">
+                  Mestre
+                </label>
+
+                <% if @members[0][:user_id] %>
+                  <label class="col text-left">
+                    Campanhas <br> Mestradas
+                  </label>
+                <% else %>
+                  <label class="col text-left">
+                    Não há um mestre nessa mesa...<br> não ainda...
+                  </label>
+                <% end %>
+              </div>
+            </li>
+
+            <% if @members[0][:user_id] %>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col border-right">
+                    <%= @members[0][:user_name].capitalize %>
+                  </div>
+
+                  <div class="col text-right">
+                    <%= @members[0][:campaigns].to_i %>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+
+            <li class="list-group-item">
+              <div class="row">
+                <label class="col text-left mt-3 border-right">
+                  Jogadores
+                </label>
+                <% if @members[1].size != 0 %>
+                  <label class="col text-left">
+                    Campanhas <br> Jogadas
+                  </label>
+                <% else %>
+                  <label class="col text-left">
+                    Parece que nenhum outro
+                    aventureiro se ajuntou a esta aventura
+                  </label>
+                <% end %>
+              </div>
+            </li>
+
+            <% if @members[1] %>
+              <% @members[1].each do |m| %>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col border-right">
+                      <%= m.name.capitalize %>
+                    </div>
+
+                    <div class="col text-right">
+                      <%= m.campaigns.to_i %>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

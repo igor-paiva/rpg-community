@@ -1,0 +1,94 @@
+<% if current_user.id != @table.admin.id %>
+  <div class="text-danger text-center h3 mt-3">
+    Você não tem permissão para estar aqui
+  </div>
+<% else %>
+  <div class="container pt-2">
+    <div class="row pt-1 align-self-center">
+      <div class="col pt-5">
+        <h2
+          align="center"
+          class="text-dark font-weight-bold mb-3">
+          Solicitações
+        </h2>
+
+        <div class="d-flex justify-content-center">
+          <div class="card" style="width: 24rem">
+            <div class="card-header bg-primary">
+              <h5 class="text-white font-weight-bold">
+                <%= @table.name.capitalize %>
+              </h5>
+            </div>
+
+            <ul class="list-group list-group-flush">
+              <% @solicitations.each do |solicitation| %>
+                <li class="list-group-item">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <%= solicitation.name %>
+                      &nbsp;como &nbsp;
+                      <%= solicitation[:role] %>
+                    </div>
+
+                    <% if solicitation[:role] == 'Master' %>
+                      <% if @table.master %>
+                        <div class="col-sm-2" />
+                        <div class="col-sm-2">
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
+                                        method: :delete, class: "btn btn-link btn-sm" do %>
+                            <i class="material-icons text-dark">thumb_down</i>
+                          <% end %>
+                        </div>
+                      <% else %>
+                        <div class="col-sm-2">
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}/conclude",
+                                        params: { :admin_id => @table.admin.id },
+                                        method: :post, class: "btn btn-link btn-sm" do %>
+                            <i class="material-icons text-dark">thumb_up</i>
+                          <% end %>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
+                                        method: :delete, class: "btn btn-link btn-sm" do %>
+                            <i class="material-icons text-dark">thumb_down</i>
+                          <% end %>
+                        </div>
+                      <% end %>
+
+                    <% elsif solicitation[:role] == 'Player' %>
+                      <% if @table.count_players > @table.max_players %>
+                        <div class="col-sm-2" />
+                        <div class="col-sm-2">
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
+                                        method: :delete, class: "btn btn-link btn-sm" do %>
+                            <i class="material-icons text-dark">thumb_down</i>
+                          <% end %>
+                        </div>
+                      <% else %>
+                        <div class="col-sm-2">
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}/conclude",
+                                        params: { :admin_id => @table.admin.id },
+                                        method: :post, class: "btn btn-link btn-sm" do %>
+                            <i class="material-icons text-dark">thumb_up</i>
+                          <% end %>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
+                                        method: :delete, class: "btn btn-link btn-sm" do %>
+                            <i class="material-icons text-dark">thumb_down</i>
+                          <% end %>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

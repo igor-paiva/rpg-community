@@ -1,0 +1,82 @@
+<h2 class="font-weight-light mt-4 mb-5" align="center">
+  Grandes mestres que passaram por aqui...
+</h2>
+
+<div class="card-columns mx-3" align="center">
+  <% @masters.each do |master| %>
+    <div class="card shadow-sm mb-4" style="max-width: 18em">
+      <div class="card-body" align="left">
+        <h5 class="card-title font-weight-bold" align="center">
+          <%= master.name.capitalize %>
+        </h5>
+
+        <div class="card-text">
+          <% if master.twitter != nil %>
+            <i class="material-icons text-primary position-absolute">
+              person_outline
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Twitter:&nbsp;
+            </span>
+            <%= master.twitter %><br>
+          <% end %>
+
+          <% if master.phone != nil %>
+            <i class="material-icons text-primary position-absolute">
+              phone
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Número:&nbsp;
+            </span>
+            <%= master.phone %><br>
+          <% end %>
+
+          <% if master.instagram != nil %>
+            <i class="material-icons text-primary position-absolute">
+              person_outline
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Instagram:&nbsp;
+            </span>
+            <%= master.instagram %><br>
+          <% end %>
+
+          <span>
+            <i class="material-icons text-primary position-absolute">
+              satellite
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Campanhas:&nbsp;
+            </span>
+
+            <%= master.campaigns.to_i %><br>
+          </span>
+
+          <% if master.description != nil %>
+            <i class="material-icons text-primary position-absolute">
+              menu
+            </i>
+
+            <span class="font-weight-bold text-primary space-icon">
+              Descrição:<br>
+            </span>
+
+            <p class="text-justify">
+              <%= master.description %><br>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+.space-icon{
+  margin-left: 30px;
+}
+</style>

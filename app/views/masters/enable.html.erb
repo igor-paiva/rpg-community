@@ -1,0 +1,28 @@
+<div class="container pt-3">
+  <div class="row pt-3 align-self-center">
+    <div class="col pt-5">
+      <div class="d-flex justify-content-center">
+        <%= form_with model: @master, action: 'update', method: :put,
+                      class: "col-md-4 rounded shadow-lg" do |master| %>
+          <div class="container">
+            <div class="form-group">
+              <h5>Como mestre, quantas campanhas você já mestrou?</h5>
+            </div>
+
+            <div class="form-group">
+              <%= master.number_field :campaigns, autofocus: true,
+                                      class: "form-control" %>
+            </div>
+
+            <div class="form-check" align="left">
+              <%= master.check_box :available, class: "form-check-input" %>
+              <%= master.label "Disponível" %>
+            </div>
+
+            <%= master.submit 'ENVIAR', class: "btn btn-primary btn-block mb-2 font-weight-bold" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

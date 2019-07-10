@@ -1,0 +1,43 @@
+<div class="container pt-4">
+  <div class="row pt-5 align-self-center">
+    <div class="col pt-5">
+      <h2 class="text-dark font-weight-bold mb-4" align="center">Entrar</h2>
+      <div class="d-flex justify-content-center">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <% flash.each do |name, msg| %>
+            <% if msg.is_a?(String) %>
+              <div class="alert alert-dismissible alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+              </div>
+            <% end %>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                              class: "form-control", placeholder: "Email" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "new-password",
+                                 class: "form-control", placeholder: "Senha" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="form-check">
+              <%= f.check_box :remember_me, class: "form-check-input" %>
+              <%= f.label "Permanecer Logado" %>
+            </div>
+          <% end %>
+
+          <div class="group" align="center">
+            <%= f.submit "ENTRAR",
+                         class: "btn btn-default btn-primary btn-block mb-2 font-weight-bold" %>
+            <a href="/users/sign_up/">Não possui uma conta ?! Crie uma agora!!</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

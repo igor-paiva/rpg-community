@@ -1,0 +1,199 @@
+<% if current_user.id != @admin.id %>
+  <div class="text-danger text-center h3 mt-3">
+    Você não tem permissão para estar aqui
+  </div>
+<% else %>
+  <div class="container-fluid">
+    <% if @tables.empty? %>
+      <div class="text-center mt-5">
+        <h1>Parece que você ainda não tem mesas :'(</h1>
+        <div class="h2">
+          <%= link_to 'Crie uma mesa agora!!', action: :new,
+                      controller: :tables,
+                      params: { admin_id: @admin.id } %>
+        </div>
+      </div>
+    <% else %>
+      <h2 class="font-weight-light mt-4" align="center">Suas Mesas</h2>
+
+      <div class="row mt-1 ml-2 justify-content-start">
+        <%= button_to '/tables/new/',
+                      method: 'get',
+                      params: { admin_id: @admin.id },
+                      class: 'btn btn-outline-primary' do %>
+          <i class="material-icons position-absolute">add</i>
+          <span class="ml-4">&nbsp;ADICIONAR MESA</span>
+        <% end %>
+      </div>
+
+      <div class="card-columns mt-4" align="center">
+
+        <% @tables.each do |table| %>
+          <div class="card ml-2 mr-2 mt-3 mb-2 shadow-sm" style="max-width: 20em;">
+            <div class="card-header" style="background-color: #9c1101;">
+              <div class="row">
+                <div class="col-sm-6 text-left">
+                  <h5 class="text-white font-weight-bold">
+                    <%= table.name.capitalize %>
+                  </h5>
+                </div>
+
+                <div class="col-2 col-sm-2">
+                  <button type="button" class="btn btn-link btn-sm"
+                          data-toggle="modal" data-target="#Modal<%= +table.id.to_s %>">
+                    <i class="material-icons text-white">edit</i>
+                  </button>
+                </div>
+
+                <div class="col-2 col-sm-2">
+                  <%= button_to "/tables/" + table.id.to_s + "/edit/",
+                                params: { :admin_id => table.admin_id.to_s },
+                                method: :get, class: "btn btn-link btn-sm" do %>
+                    <i class="material-icons text-white">view_list</i>
+                  <% end %>
+                </div>
+
+                <div class="col-2 col-sm-2">
+                  <button type="button" class="btn btn-link btn-sm"
+                          data-toggle="modal" data-target="#Dialog<%= +table.id.to_s %>">
+                    <i class="material-icons text-white">delete</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-text text-justify">
+                <%= table.description %>
+              </p>
+            </div>
+          </div>
+
+        <% end %>
+
+        <% @tables.each do |table| %>
+          <div class="modal fade" id="Modal<%= table.id.to_s %>" tabindex="-1" role="dialog"
+               aria-labelledby="editModalLabel<%= table.id.to_s %>" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editModalLabel<%= table.id.to_s %>">
+                    Edite sua mesa
+                  </h5>
+
+                  <button type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <%= form_with model: table, url: "/tables/#{table.id.to_s}",
+                              method: :put do |f| %>
+                  <%= f.hidden_field :admin_id %>
+                  <div class="modal-body">
+
+                    <div class="form-group" align="left">
+                      <label>Name:</label>
+                    </div>
+                    <div class="form-group">
+                      <%= f.text_field :name, autofocus: true, autocomplete: "name",
+                                       class: "form-control" %>
+                    </div>
+
+                    <div class="form-group" align="left">
+                      <label>Número máximo de jogadores:</label>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.number_field :max_players, autofocus: true,
+                                         class: "form-control" %>
+                    </div>
+
+                    <div class="container mt-2 mb-3">
+                      <div class="row">
+                        <div class="text-left">Disponível:</div>
+                        <div class="col">
+                          <div class="form-check">
+                            <%= f.check_box :available,
+                                            class: "form-check-input position-static mb-2 lg" %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group" align="left">
+                      <label>Descrição:</label>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.text_area :description,
+                                      autofocus: true,
+                                      autocomplete: "description",
+                                      class: "form-control",
+                                      placeholder: "Descrição",
+                                      style: "height: 100px" %>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-dark btn-to-left"
+                            data-dismiss="modal">FECHAR
+                    </button>
+                    <%= f.submit 'SALVAR', class: "btn btn-primary" %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% @tables.each do |table| %>
+          <div class="modal fade" id="Dialog<%= table.id.to_s %>" tabindex="-1" role="dialog"
+               aria-labelledby="deleteDialogLabel<%= table.id.to_s %>" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="deleteDialog<%= table.id.to_s %>LongTitle">
+                    Você tem certeza?!
+                  </h5>
+
+                  <button type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+                  Caro aventureiro, essa ação será realizada sem pudor...
+                </div>
+
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-dark btn-to-left"
+                          data-dismiss="modal">FECHAR
+                  </button>
+
+                  <%= button_to 'DELETAR', "/tables/#{table.id.to_s}",
+                                params: { :admin_id => table.admin_id.to_s },
+                                method: :delete, class: "btn btn-primary" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+
+<style>
+  .btn-to-left {
+    position: absolute;
+    left: 16px;
+  }
+</style>
