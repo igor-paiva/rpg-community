@@ -6,11 +6,11 @@
   <div class="container pt-2">
     <div class="row pt-1 align-self-center">
       <div class="col pt-5">
-        <h4
+        <h2
           align="center"
           class="text-dark font-weight-bold mb-3">
           Solicitações
-        </h4>
+        </h2>
 
         <div class="d-flex justify-content-center">
           <div class="card" style="width: 24rem">
@@ -32,16 +32,16 @@
 
                     <% if solicitation[:role] == 'Master' %>
                       <% if @table.master %>
-                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2" />
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + solicitation.id.to_s,
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
                         </div>
                       <% else %>
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + solicitation.id.to_s + "/conclude",
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}/conclude",
                                         params: { :admin_id => @table.admin.id },
                                         method: :post, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_up</i>
@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + solicitation.id.to_s,
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
@@ -58,16 +58,16 @@
 
                     <% elsif solicitation[:role] == 'Player' %>
                       <% if @table.count_players > @table.max_players %>
-                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2" />
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + solicitation.id.to_s,
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
                         </div>
                       <% else %>
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + solicitation.id.to_s + "/conclude",
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}/conclude",
                                         params: { :admin_id => @table.admin.id },
                                         method: :post, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_up</i>
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + solicitation.id.to_s,
+                          <%= button_to "/solicitations/#{solicitation.id.to_s}",
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
