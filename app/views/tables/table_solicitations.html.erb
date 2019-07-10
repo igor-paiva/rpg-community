@@ -21,27 +21,27 @@
             </div>
 
             <ul class="list-group list-group-flush">
-              <% @users.each do |users| %>
+              <% @solicitations.each do |solicitation| %>
                 <li class="list-group-item">
                   <div class="row">
                     <div class="col-sm-8">
-                      <%= users.name %>
+                      <%= solicitation.name %>
                       &nbsp;como &nbsp;
-                      <%= users[:role] %>
+                      <%= solicitation[:role] %>
                     </div>
 
-                    <% if users[:role] == 'Master' %>
+                    <% if solicitation[:role] == 'Master' %>
                       <% if @table.master %>
                         <div class="col-sm-2"></div>
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + users.id.to_s,
+                          <%= button_to "/solicitations/" + solicitation.id.to_s,
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
                         </div>
                       <% else %>
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + users.id.to_s + "/conclude",
+                          <%= button_to "/solicitations/" + solicitation.id.to_s + "/conclude",
                                         params: { :admin_id => @table.admin.id },
                                         method: :post, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_up</i>
@@ -49,25 +49,25 @@
                         </div>
 
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + users.id.to_s,
+                          <%= button_to "/solicitations/" + solicitation.id.to_s,
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
                         </div>
                       <% end %>
 
-                    <% elsif users[:role] == 'Player' %>
-                      <% if @table.count_players < @table.max_players %>
+                    <% elsif solicitation[:role] == 'Player' %>
+                      <% if @table.count_players > @table.max_players %>
                         <div class="col-sm-2"></div>
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + users.id.to_s,
+                          <%= button_to "/solicitations/" + solicitation.id.to_s,
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
                         </div>
                       <% else %>
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + users.id.to_s + "/conclude",
+                          <%= button_to "/solicitations/" + solicitation.id.to_s + "/conclude",
                                         params: { :admin_id => @table.admin.id },
                                         method: :post, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_up</i>
@@ -75,7 +75,7 @@
                         </div>
 
                         <div class="col-sm-2">
-                          <%= button_to "/solicitations/" + users.id.to_s,
+                          <%= button_to "/solicitations/" + solicitation.id.to_s,
                                         method: :delete, class: "btn btn-link btn-sm" do %>
                             <i class="material-icons text-dark">thumb_down</i>
                           <% end %>
