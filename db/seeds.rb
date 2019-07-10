@@ -175,11 +175,6 @@ if Rails.env.development?
     table_id: table1.id
   )
 
-  player_table_jorge = PlayerTable.find_by(
-    player_id: player3.id,
-    table_id: table1.id
-  )
-
   player_table_john = PlayerTable.find_by(
     player_id: player4.id,
     table_id: table1.id
@@ -190,11 +185,6 @@ if Rails.env.development?
     table_id: table1.id
   )
 
-  player_table2 = player_table_jorge || PlayerTable.create!(
-    player_id: player3.id,
-    table_id: table1.id
-  )
-
   player_table3 = player_table_john || PlayerTable.create!(
     player_id: player4.id,
     table_id: table1.id
@@ -202,11 +192,11 @@ if Rails.env.development?
 
   table1_master_table = MasterTable.find_by(
     master_id: master3.id,
-    table_id: table2.id
+    table_id: table1.id
   )
 
   master_table = table1_master_table || MasterTable.create!(
     master_id: master3.id,
-    table_id: table2.id
+    table_id: table1.id
   )
 end
